@@ -1,15 +1,20 @@
 export default {
-    singular: true,
-    plugins: [
-      ['umi-plugin-react', {
+  singular: true,
+  plugins: [
+    [
+      'umi-plugin-react',
+      {
         antd: true,
         dva: true
         // 这里暂时还没有添加配置，该插件还不会有作用，我们会在后面的课程按照需求打开相应的配置
-      }],
-    ],
-    routes: [{
+      }
+    ]
+  ],
+  routes: [
+    {
       path: '/',
-      component: 'Amap',
+      component: 'Amap'
+
       // routes: [
       //   {
       //     path: '/planning',
@@ -32,14 +37,18 @@ export default {
       //     ]
       //   },
       // ]
-    }],
+    }
+    // {
+    //   path: '/demo',
+    //   component: 'demo'
+    // }
+  ],
 
-    proxy: {
-      '/dev': {
-        target: 'http://localhost:7000',
-        changeOrigin: true,
-        // pathRewrite: { "^/dev": "" }
-      },
-    },
-
+  proxy: {
+    '/dev': {
+      target: 'http://localhost:7000',
+      changeOrigin: true
+      // pathRewrite: { "^/dev": "" }
+    }
   }
+}

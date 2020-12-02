@@ -1,42 +1,42 @@
-import request from '../utils/request';
+import request from '../utils/request'
 
 export async function queryFromHost(params) {
   //debugger
   //const reqHeader = getAuthRequestHeader()
-  return request('/dev/',{
+  return request('/dev/', {
     method: 'POST',
     // timeout: 180000,
     // headers: {
     //   hi: "hello"
     // },
     body: JSON.stringify(params)
-  });
+  })
 }
 
-export async function prepareToPlan(params) {
+export async function postChangeFlight(params) {
   //debugger
   //const reqHeader = getAuthRequestHeader()
-  return request('/dev/',{
+  return request('/dev/', {
     method: 'POST',
     // timeout: 180000,
     // headers: {
     //   hi: "hello"
     // },
     body: JSON.stringify(params)
-  });
+  })
 }
 
-export async function prepareToManage(params) {
+export async function postChangeMission(params) {
   //debugger
   //const reqHeader = getAuthRequestHeader()
-  return request('/dev/',{
+  return request('/dev/', {
     method: 'POST',
     // timeout: 180000,
     // headers: {
     //   hi: "hello"
     // },
     body: JSON.stringify(params)
-  });
+  })
 }
 
 // export async function getTheRoute() {
