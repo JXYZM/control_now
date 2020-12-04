@@ -16,17 +16,17 @@ import {
   Badge,
   Space,
   Input,
-  Select
+  Select,
 } from 'antd'
 import {
   MinusCircleOutlined,
   PlusOutlined,
-  createFromIconfontCN
+  createFromIconfontCN,
 } from '@ant-design/icons'
 import load_point from '../resources/load_point'
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_1282563_kns8e1am00d.js'
+  scriptUrl: '//at.alicdn.com/t/font_1282563_kns8e1am00d.js',
 })
 
 const { TabPane } = Tabs
@@ -41,48 +41,45 @@ const mapStateToProps = ({ [namespace]: n }) => {
     tInfo: n.todo_list,
     pInfo: n.position,
     fInfo: n.flight_info,
-    mInfo: n.mission_info
+    mInfo: n.mission_info,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     query_from_host: () => {
       const action = {
         type: `${namespace}/query_from_host`,
         payload: {
-          type: 0
-        }
+          type: 0,
+        },
       }
       dispatch(action)
     },
-    post_change_flight: values => {
+    post_change_flight: (values) => {
       const action = {
         type: `${namespace}/post_change_flight`,
         payload: {
           type: 1,
-          ...values
-        }
+          ...values,
+        },
       }
       dispatch(action)
     },
-    post_change_mission: values => {
+    post_change_mission: (values) => {
       const action = {
         type: `${namespace}/post_change_mission`,
         payload: {
           type: 2,
-          ...values
-        }
+          ...values,
+        },
       }
       dispatch(action)
-    }
+    },
   }
 }
 
-@connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Amap extends Component {
   constructor() {
     super()
@@ -99,29 +96,29 @@ export default class Amap extends Component {
         'blue',
         'yellow',
         'purple',
-        'orange'
-      ]
+        'orange',
+      ],
     }
     this.amapEvents = {
-      created: mapInstance => {
+      created: (mapInstance) => {
         self.map = mapInstance
-      }
+      },
     }
     this.lineEvents = {
-      created: ins => {
+      created: (ins) => {
         console.log(ins)
       },
       show: () => {
         console.log('line show')
-      }
+      },
     }
     this.toolEvents = {
-      created: tool => {
+      created: (tool) => {
         self.tool = tool
       },
       draw({ obj }) {
         self.drawWhat(obj)
-      }
+      },
     }
     this.mapPlugins = ['ToolBar']
     this.mapCenter = { longitude: 118.957746, latitude: 32.115395 }
@@ -134,8 +131,8 @@ export default class Amap extends Component {
         key: 'uav' + JSON.stringify(a),
         position: {
           longitude: this.props.pInfo[a][0] / 1000000,
-          latitude: this.props.pInfo[a][1] / 1000000
-        }
+          latitude: this.props.pInfo[a][1] / 1000000,
+        },
       })
     }
     let temp_path = []
@@ -144,12 +141,12 @@ export default class Amap extends Component {
       let temptemp = []
       temptemp = temptemp.concat({
         longitude: this.props.pInfo[count_out][0] / 1000000,
-        latitude: this.props.pInfo[count_out][1] / 1000000
+        latitude: this.props.pInfo[count_out][1] / 1000000,
       })
       for (let b of a) {
         temptemp = temptemp.concat({
           longitude: this.state.load_point[b['point']].position.longitude,
-          latitude: this.state.load_point[b['point']].position.latitude
+          latitude: this.state.load_point[b['point']].position.latitude,
         })
       }
       temp_path = temp_path.concat({ route: temptemp, key: count_out })
@@ -160,10 +157,10 @@ export default class Amap extends Component {
 
   render() {
     const [load_uav, path] = this.display()
-    const onChangeFlight = values => {
+    const onChangeFlight = (values) => {
       this.props.post_change_flight(values)
     }
-    const onChangeMission = values => {
+    const onChangeMission = (values) => {
       this.props.post_change_mission(values)
     }
 
@@ -177,7 +174,7 @@ export default class Amap extends Component {
               left: 50,
               textAlign: 'left',
               color: 'white',
-              fontSize: 24
+              fontSize: 24,
             }}
           >
             <div>
@@ -194,7 +191,7 @@ export default class Amap extends Component {
               center={this.mapCenter}
             >
               <MouseTool events={this.toolEvents} />
-              {this.state.load_point.map(item => (
+              {this.state.load_point.map((item) => (
                 <Marker
                   position={item.position}
                   extData={{ key: item.key }}
@@ -203,7 +200,7 @@ export default class Amap extends Component {
                   events={this.markerEvents}
                 />
               ))}
-              {load_uav.map(item => (
+              {load_uav.map((item) => (
                 <Marker
                   position={item.position}
                   icon={'//vdata.amap.com/icons/b18/1/2.png'}
@@ -211,13 +208,13 @@ export default class Amap extends Component {
                   title={item.key}
                 />
               ))}
-              {path.map(item => (
+              {path.map((item) => (
                 <Polyline
                   path={item.route}
                   showDir={true}
                   style={{
-                    strokeWeight: 7,
-                    strokeColor: this.state.color[item.key]
+                    strokeWeight: 4,
+                    strokeColor: this.state.color[item.key],
                   }}
                 />
               ))}
@@ -227,7 +224,7 @@ export default class Amap extends Component {
             <Collapse defaultActiveKey={['0', '1']}>
               <Panel header="无人集群个体信息管理" key="0">
                 <Collapse defaultActiveKey={['0']}>
-                  {this.props.fInfo.map(v => (
+                  {this.props.fInfo.map((v) => (
                     <Panel header={v['header']} key={v['key']}>
                       <Descriptions bordered>
                         <Descriptions.Item label="编号">
@@ -267,7 +264,7 @@ export default class Amap extends Component {
               </Panel>
               <Panel header="任务信息管理" key="1">
                 <Collapse defaultActiveKey={['0']}>
-                  {this.props.mInfo.map(v => (
+                  {this.props.mInfo.map((v) => (
                     <Panel header={v['header']} key={v['key']}>
                       <Descriptions bordered>
                         <Descriptions.Item label="编号">
@@ -293,11 +290,11 @@ export default class Amap extends Component {
             <div className="my_start">
               <Button type="primary" htmlType="button">
                 <a
-                  onClick={_ => {
+                  onClick={(_) => {
                     clearInterval(this.timer)
                     this.timer = setInterval(() => {
                       this.props.query_from_host()
-                    }, 200)
+                    }, 100)
                   }}
                 >
                   start
@@ -316,7 +313,7 @@ export default class Amap extends Component {
                       <Form.List name="flights">
                         {(fields, { add, remove }) => (
                           <>
-                            {fields.map(field => (
+                            {fields.map((field) => (
                               <Space
                                 key={field.key}
                                 style={{ display: 'flex', marginBottom: 8 }}
@@ -329,12 +326,12 @@ export default class Amap extends Component {
                                   rules={[
                                     {
                                       required: true,
-                                      message: 'Missing flight id'
-                                    }
+                                      message: 'Missing flight id',
+                                    },
                                   ]}
                                 >
                                   <Select placeholder="flight id" allowClear>
-                                    {this.props.fInfo.map(f => (
+                                    {this.props.fInfo.map((f) => (
                                       <Option value={f['id']}>{f['id']}</Option>
                                     ))}
                                   </Select>
@@ -346,8 +343,8 @@ export default class Amap extends Component {
                                   rules={[
                                     {
                                       required: true,
-                                      message: 'Missing point id'
-                                    }
+                                      message: 'Missing point id',
+                                    },
                                   ]}
                                 >
                                   <Input placeholder="point id" />
@@ -359,8 +356,8 @@ export default class Amap extends Component {
                                   rules={[
                                     {
                                       required: true,
-                                      message: 'Missing action'
-                                    }
+                                      message: 'Missing action',
+                                    },
                                   ]}
                                 >
                                   <Input placeholder="action" />
@@ -399,7 +396,7 @@ export default class Amap extends Component {
                       <Form.List name="missions">
                         {(fields, { add, remove }) => (
                           <>
-                            {fields.map(field => (
+                            {fields.map((field) => (
                               <Space
                                 key={field.key}
                                 style={{ display: 'flex', marginBottom: 8 }}
@@ -412,12 +409,12 @@ export default class Amap extends Component {
                                   rules={[
                                     {
                                       required: true,
-                                      message: 'Missing mission id'
-                                    }
+                                      message: 'Missing mission id',
+                                    },
                                   ]}
                                 >
                                   <Select placeholder="mission id" allowClear>
-                                    {this.props.mInfo.map(m => (
+                                    {this.props.mInfo.map((m) => (
                                       <Option value={m['id']}>{m['id']}</Option>
                                     ))}
                                   </Select>
@@ -429,8 +426,8 @@ export default class Amap extends Component {
                                   rules={[
                                     {
                                       required: true,
-                                      message: 'Missing action'
-                                    }
+                                      message: 'Missing action',
+                                    },
                                   ]}
                                 >
                                   <Input placeholder="action" />

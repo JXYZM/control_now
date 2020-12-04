@@ -37,18 +37,21 @@
   grid-column: 1/12;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   padding: 5px 5px 5px 5px;
-  overflow: auto;
 }
 
 .my_start {
+  grid-row: 1/11;
   grid-column: 1/2;
   padding: 5px 5px 5px 5px;
 }
 
 .my_interact {
+  grid-row: 1/11;
   grid-column: 2/11;
   padding: 5px 5px 5px 5px;
+  overflow: auto;
 }
 
 .td {
