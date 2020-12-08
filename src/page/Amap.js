@@ -25,8 +25,12 @@ import {
 } from '@ant-design/icons'
 import load_point from '../resources/load_point'
 
-const IconFont = createFromIconfontCN({
+const IconFont0 = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_1282563_kns8e1am00d.js',
+})
+
+const IconFont1 = createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1289406_de15s4r5mdv.js',
 })
 
 const { TabPane } = Tabs
@@ -178,7 +182,7 @@ export default class Amap extends Component {
             }}
           >
             <div>
-              <IconFont style={{ padding: '20px' }} type="icon-wurenji-copy" />
+              <IconFont0 style={{ padding: '20px' }} type="icon-wurenji-copy" />
               {`智能管理控制平台`}
             </div>
           </div>
@@ -203,10 +207,12 @@ export default class Amap extends Component {
               {load_uav.map((item) => (
                 <Marker
                   position={item.position}
-                  icon={'//vdata.amap.com/icons/b18/1/2.png'}
-                  offset={{ x: -10, y: -15 }}
+                  // icon={'//vdata.amap.com/icons/b18/1/2.png'}
+                  offset={{ x: -8, y: -12 }}
                   title={item.key}
-                />
+                >
+                  <IconFont1 type="icon-wurenji" />
+                </Marker>
               ))}
               {path.map((item) => (
                 <Polyline

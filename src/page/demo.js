@@ -4,7 +4,7 @@ export default class Demo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      valid: true
+      valid: true,
     }
   }
 
@@ -15,9 +15,9 @@ export default class Demo extends Component {
       <div>
         {valid ? '1' : '0'}
         <button
-          onClick={_ =>
+          onClick={(_) =>
             this.setState({
-              valid: !valid
+              valid: !valid,
             })
           }
         ></button>
