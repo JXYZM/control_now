@@ -1,3 +1,7 @@
+/*
+method.js
+自定义post
+*/
 import request from '../utils/request'
 
 export async function queryFromHost(params) {
@@ -9,7 +13,7 @@ export async function queryFromHost(params) {
     // headers: {
     //   hi: "hello"
     // },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   })
 }
 
@@ -22,7 +26,7 @@ export async function postChangeFlight(params) {
     // headers: {
     //   hi: "hello"
     // },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   })
 }
 
@@ -35,7 +39,7 @@ export async function postChangeMission(params) {
     // headers: {
     //   hi: "hello"
     // },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   })
 }
 

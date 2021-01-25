@@ -1,9 +1,13 @@
+/*
+planning.js
+dva model 数据交互
+*/
 import { message } from 'antd'
 
 import {
   postChangeFlight,
   queryFromHost,
-  postChangeMission
+  postChangeMission,
 } from '../services/method'
 
 export default {
@@ -25,8 +29,8 @@ export default {
         mb: '',
         list: '',
         load: '',
-        cost: ''
-      }
+        cost: '',
+      },
     ],
     mission_info: [
       {
@@ -34,9 +38,9 @@ export default {
         key: '0',
         id: 'm 0',
         des: '',
-        status: ['', 'default']
-      }
-    ]
+        status: ['', 'default'],
+      },
+    ],
   },
   effects: {
     *query_from_host({ payload }, sagaEffects) {
@@ -61,7 +65,7 @@ export default {
       //console.log(response)
       message.success(response['message'], 3)
       //yield put({ type: 'Change', payload: response })
-    }
+    },
   },
   reducers: {
     Change(state, { payload: datasets }) {
@@ -81,12 +85,12 @@ export default {
         todo_list: next_todo_list,
         position: next_position,
         flight_info: next_flight_info,
-        mission_info: next_mission_info
+        mission_info: next_mission_info,
         // current_cost: next_current_cost,
         // mission: next_mission,
         // algo: next_algo,
         // trans: next_trans,
       }
-    }
-  }
+    },
+  },
 }

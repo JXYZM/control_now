@@ -1,3 +1,7 @@
+/*
+request.js
+post 封装
+*/
 // function checkStatus(response) {
 //   if (response.status >= 200 && response.status < 300) {
 //     return response;
@@ -22,8 +26,8 @@
 //   return await response.json();
 // }
 
-import { extend } from 'umi-request';
-import { notification } from 'antd';
+import { extend } from 'umi-request'
+import { notification } from 'antd'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -41,21 +45,21 @@ const codeMessage = {
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
-};
+}
 
 /**
  * 异常处理程序
  */
-const errorHandler = error => {
-  const { response = {} } = error;
-  const errortext = codeMessage[response.status] || response.statusText;
-  const { status, url } = response;
+const errorHandler = (error) => {
+  const { response = {} } = error
+  const errortext = codeMessage[response.status] || response.statusText
+  const { status, url } = response
 
   notification.error({
     message: `请求错误 ${status}: ${url}`,
     description: errortext,
-  });
-};
+  })
+}
 
 /**
  * 配置request请求时的默认参数
@@ -63,6 +67,6 @@ const errorHandler = error => {
 const request = extend({
   errorHandler, // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
-});
+})
 
-export default request;
+export default request

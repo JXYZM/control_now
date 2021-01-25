@@ -1,3 +1,7 @@
+/*
+load_point.js
+加载点信息
+*/
 export default [
   { key: 0, position: { longitude: 118.955476, latitude: 32.112982 } },
   { key: 1, position: { longitude: 118.956335, latitude: 32.113378 } },
@@ -28,5 +32,5 @@ export default [
   { key: 26, position: { longitude: 118.962021, latitude: 32.11589 } },
   { key: 27, position: { longitude: 118.961517, latitude: 32.115868 } },
   { key: 28, position: { longitude: 118.961597, latitude: 32.116485 } },
-  { key: 29, position: { longitude: 118.960771, latitude: 32.115913 } }
+  { key: 29, position: { longitude: 118.960771, latitude: 32.115913 } },
 ]

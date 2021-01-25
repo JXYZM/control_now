@@ -1,3 +1,7 @@
+/*
+Amap.js
+前端主界面
+*/
 import React, { Component } from 'react'
 import { Map, MouseTool, Marker, Polyline } from 'react-amap'
 import { connect } from 'dva'
